@@ -245,95 +245,37 @@ if(isset($_POST["submitAnnonce"])){
                 }
             }
                 ?>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Deposer une annonce</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Votre annonce a bien ete envoyer , un mail vous sera envoyer apres la validation.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                        </div>
-                    </div>
+            <div class="container">
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong> votre annonce nous a ete envoyer.
                 </div>
             </div>
-            <script>
-
-                $('#exampleModalCenter').modal('show');
 
 
-
-
-            </script>
             <?php
 
         }else{
             ?>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Deposer une annonce</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Nous avons rencontre un probleme en interne, les devolopeur on etais notifier.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" onclick="window.location.href='annonce.php'" class="btn btn-primary">Deposer un annonce</button>
-
-
-                        </div>
-                    </div>
+            <div class="container">
+                <div class="alert alert-warning alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Warning!</strong> Nous avons rencontrer une eureur en interne les devolopeurs on etais notifier.
                 </div>
             </div>
-            <script>
 
-                $('#exampleModalCenter').modal('show');
-
-            </script>
             <?php
         }
 
 
     }else{
         ?>
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Deposer une annonce</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        Nous avons rencontre un probleme en interne, les devolopeur on etais notifier.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" onclick="window.location.href='annonce.php'" class="btn btn-primary">Deposer un annonce</button>
-
-
-                    </div>
-                </div>
+        <div class="container">
+            <div class="alert alert-warning alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Warning!</strong> Nous avons rencontrer une eureur en interne les devolopeurs on etais notifier.
             </div>
         </div>
-        <script>
-
-            $('#exampleModalCenter').modal('show');
-
-        </script>
         <?php
     }
 
