@@ -1,0 +1,46 @@
+.header{
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 70px;
+    line-height: 70px;
+    background-color: rgba(11, 12, 14, 0.97);
+    position: fixed;
+    top:0px;
+}
+.header .header-logo{
+    color:aliceblue;
+    font-family: 'Montserrat', sans-serif;
+    float: left;
+    margin-left: 30px;
+}
+
+.header .header-menu{
+    float: right;
+    margin-right: 30px;
+}
+.header .header-menu a[href="#"] {
+    margin-right: 15px;
+    color: aliceblue;
+}
+.header .header-menu a:hover{
+    color:#3498db;
+}
+.recherche{
+    margin-top: 120px;
+    margin-left: 150px;
+    margin-right: 150px;
+    background-color: #bdc3c7;
+}
+
+.navbar{
+    width: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: 70px;
+    line-height: 70px;
+    background-color: rgba(11, 12, 14, 0.97);
+    position: fixed;
+    top:0px;
+}
+

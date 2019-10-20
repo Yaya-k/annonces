@@ -1,0 +1,620 @@
+<!-- don't try to undestund this code! you will lose your mind-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- polices pour les titres -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+   <script defer src= "https://use.fontawesome.com/releases/v5.0.6/js/all.js "></script>
+
+
+</head>
+<body>
+<div class="block">
+    <header class="header">
+        <a href="#" class="header-logo">Mon logo</a>
+        <nav class="header-menu">
+            <a href="#">Acceil</a>
+            <a href="#"> A propos</a>
+            <a href="#">Recherche</a>
+            <a href="#"> Nous contacter</a>
+
+        </nav>
+    </header>
+
+</div>
+<!-- recherche button-->
+<form class="recherche">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Me localiser
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+<!-- recherche button-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="src/js/main.js"></script>
+</body>
+
+</html>
+
+
+
+
+<?php
+// On démarre la session AVANT d'écrire du code HTML
+/*unset($_COOKIE["username"]);
+// empty value and expiration one hour before
+$res = setcookie("username", '', time() - 3600);*/
+if(!session_id()) {
+    session_start();
+}
+session_destroy();
+
+if(htmlspecialchars(isset($_GET["deconnexion"])))
+{
+    session_destroy();
+
+
+}
+if(htmlspecialchars(isset($_POST["rememberMe"])) )
+{
+ echo 'pas de soucis';
+}
+elseif(htmlspecialchars(isset($_POST["username"])) and htmlspecialchars(isset($_POST["password"])))
+{
+    $_SESSION["username"]=$_POST["username"];
+
+}
+
+?>
+
+<?php
+ if(htmlspecialchars(isset( $_POST["username"] )) and htmlspecialchars(isset($_POST["password"])))
+ {
+     echo 'je me nome'. $_POST["username"].' '. $_POST["password"];
+ }
+?>
+
+
+$req = $bdd->prepare('INSERT INTO user(nom, prenom, email, password, birthday, numero)
+VALUES(:nom, :prenom, :email, :password, :birthday, :numero)');
+
+$req->execute(array(
+'nom' => $_POST['firstName'],
+'prenom' => $_POST['lastName'],
+'email' =>$_POST['email'],
+'password' => $_POST['password'],
+'birthday' => $_POST['birthDate'],
+'numero' => $_POST['phoneNumber']
+
+));
+
+
+
+$email=$_POST["email"];
+//  Récupération de l'utilisateur et de son pass hashé
+$req = $bdd->prepare('SELECT id, password FROM user WHERE email = :email');
+$req->execute(array(
+'email' => $email));
+
+$resultat = $req->fetch();
+
+// Comparaison du pass envoyé via le formulaire avec la base
+$isPasswordCorrect = password_verify($_POST['password'], $resultat['password']);
+
+if (!$resultat)
+{
+echo 'Mauvais identifiant ou mot de passe !';
+}
+else
+{
+if ($isPasswordCorrect) {
+$_SESSION['id'] = $resultat['id'];
+$_SESSION['email'] = $email;
+echo 'Vous êtes connecté !';
+}
+else {
+echo 'Mauvais identifiant ou mot de passe !';
+}
+}
+
+
+if(!session_id()) {
+session_start();
+}
+
+include "header.php";
+include "dbbConnexion.php";
+if(htmlspecialchars(isset($_SESSION["email"])));
+{
+$email=$_SESSION["email"];
+//  Récupération de l'utilisateur et de son pass hashé
+$req = $bdd->prepare('SELECT nom, prenom FROM user WHERE email = :email');
+$req->execute(array(
+'email' => $email));
+
+$resultat = $req->fetch();
+if($resultat)
+{
+
+}
+
+}
+
+
+
+<div class="container">
+    <form class="form-horizontal" role="form" action="index.php" method="post">
+        <div class="form-group">
+            <label for="firstName" class="col-sm-3 control-label">First Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="firstName" placeholder="First Name" class="form-control" autofocus name="firstName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+            <div class="col-sm-9">
+                <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus name="lastName" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email </label>
+            <div class="col-sm-9">
+                <input type="email" id="email" placeholder="Email" class="form-control" name= "email" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumber" class="col-sm-3 control-label">Phone number </label>
+            <div class="col-sm-9">
+                <input type="phoneNumber" id="phoneNumber" placeholder="Phone number" class="form-control" name="phoneNumber" required>
+                <span class="help-block">Your phone number won't be disclosed anywhere </span>
+            </div>
+        </div>
+
+        <button type="submit" id="submit" class="btn btn-primary btn-block" name="registerButton" disabled="" >Update</button>
+    </form> <!-- /form -->
+</div> <!-- ./container -->
+
+
+
+<link rel="stylesheet" href="src/css/main.css">
+
+<form class="recherche">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Me localiser
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+
+
+
+<select class="form-control search-slt " id="exampleFormControlSelect1" onfocus='this.size=9;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+    <option>Select une localité</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example one</option>
+    <option>Example fin</option>
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12"> yaya
+            <div class="row">
+                <!--- ici nous auront le contenue de la page en question--->
+                <div class="col-lg-8">contenue
+
+
+                    <div class="row">
+
+
+                        <!---- debut annonce---->
+                        <?php
+                        for ($i = 1; $i <= 10; $i++){
+
+                            ?>
+                        <div class="col-lg-12"> annonce 1
+                            <div class="row">
+                                <div class="col-lg-2">4 colonnes</div>
+
+                                <div class="col-lg-offset-2 col-lg-8">8 colonnes</div>
+                            </div>
+                        </div>
+
+                        <?php
+                        }
+                       ?>
+
+                        <!---- fin ---->
+
+
+
+
+                    </div>
+
+
+                </div>
+
+                <!--- ici la partie pu--->
+                <div class="col-lg-4">pub</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+.row {
+margin-right: -15px;
+margin-left: -15px;
+}
+
+
+[class*="col-"], footer {
+background-color: #95a5a6;
+border: 2px solid black;
+border-radius: 6px;
+line-height: 40px;
+text-align: center;
+margin-bottom: 20px;
+}
+
+.container {
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+}
+
+@media (min-width: 768px) {
+.container {
+width: 750px;
+}
+}
+@media (min-width: 992px) {
+.container {
+width: 970px;
+}
+}
+@media (min-width: 1200px) {
+.container {
+width: 1170px;
+}
+}
+
+.col-lg-offset-6 {
+margin-left: 50%;
+}
+
+.col-lg-offset-2 {
+margin-left: 7px;
+}
+
+
+
+
+<option>Select une localité</option>
+<!---  <optgroup label="DAKAR">                                 </optgroup>
+-->
+
+<option>Dakar</option>
+<option>Pikine</option>
+<option>Guédiawaye</option>
+<option>Rufisque</option>
+
+
+
+<option>Diourbel</option>
+<option>Bambey</option>
+<option>Mbacké</option>
+
+
+
+<option>Fatick</option>
+<option>Gossas</option>
+<option>Foundiougne</option>
+
+
+
+<option>Kaffrine</option>
+<option>Mbouki</option>
+<option>Koungheul</option>
+<option>Hoddar</option>
+
+
+
+<option>Kaolack</option>
+<option>Nioro du Rip</option>
+<option>Mbadakhoune</option>
+<option>Guinguinéo</option>
+
+
+
+<option>Kédougou</option>
+<option>Salémata</option>
+<option>Saraya</option>
+
+
+
+<option>Kolda</option>
+<option>Médina Yoro Foulah</option>
+<option>Vélingara</option>
+
+
+
+<option>Louga</option>
+<option>Kébémer</option>
+<option>Linguère</option>
+
+
+
+<option>Matam</option>
+<option>Kanel</option>
+<option>Ranérou-Ferlo</option>
+
+
+
+<option>Saint Louis</option>
+<option>Podor</option>
+
+
+
+<option>Sédhiou</option>
+<option>Goudoump</option>
+
+
+
+<option>Tambacounda</option>
+<option>Bakel</option>
+<option>Goudiry</option>
+
+
+<option>Thiés</option>
+<option>Tivaouane</option>
+<option>Mbour</option>
+
+
+
+<option>Ziguinchor</option>
+<option>Bignona</option>
+
+onfocus='this.size=9;' onblur='this.size=1;' onchange='this.size=1; this.blur();'
+
+*
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<meta charset=utf-8 />
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jquery -->
+
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+
+<!-- bulma -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+<!-- css file-->
+<link rel="stylesheet" href="src/css/main.css">
+
+
+<!-- boostrap -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- polices pour les titres -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+<script defer src= "https://use.fontawesome.com/releases/v5.0.6/js/all.js "></script>
+
+
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<header>
+    <!-- jquery -->
+
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+
+    <!-- boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+
+
+
+
+
+    <!-- polices pour les titres -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+    <script defer src= "https://use.fontawesome.com/releases/v5.0.6/js/all.js "></script>
+
+
+    <!-- bulma -->
+    <!-- css file-->
+    <link rel="stylesheet" href="src/css/main.css">
+</header>
+<body>
+
+<!--Main Navigation-->
+
+<form method="post" action="testConsolePhp.php">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 col-xs-1" >
+                <img id="photoPrincipale" src="src/images/photoPrincipale.PNG",alt="photo principal" style="cursor:pointer">
+                <input name="fileToUpload" type="file"  id="fileToUpload" accept=".gif,.jpg,.jpeg,.png" style="display:none" onchange="uploadImage(this)"/>
+                <span id="supprimerPhotoPrincipale" style="cursor: pointer;display: none;color:red ;">Supprimer</span>
+
+            </div>
+
+            </br>
+            <span id='messageIfSameImages' class="col-lg-12"></span>
+        </div>
+
+        </br>
+        </br>
+
+
+    </div>
+    <button name="submitAnnonce" type="submit" id="submitAnnonce" class="btn btn-primary col-lg-3" style="margin-left: 4px">Valider</button>
+
+</form>
+
+<script>
+
+    $("#photoPrincipale").click(function () {
+        $("#fileToUpload").trigger('click');
+    });
+
+    function uploadImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#photoPrincipale')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(120);
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
