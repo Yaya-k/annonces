@@ -85,6 +85,16 @@ session_start();
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
+                        <?php
+                            if($_SESSION["email"]== "yaya.kamissokho@gmail.com"){
+                                ?>
+                                <a class="button is-warning" href="admin/index.php">
+                                    <strong>administrer</strong>
+                                </a>
+                                <?php
+
+                        }
+                        ?>
 
                         <a class="button is-primary" href="profileUser.php?action=overview">
                             <strong>Profile</strong>

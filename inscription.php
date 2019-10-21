@@ -20,7 +20,7 @@ include ("header.php")
 <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container">
+<div class="container" style="margin-top: 80px" ">
     <form class="form-horizontal" role="form" action="index.php" method="post">
         <h2>Registration</h2>
         <div class="form-group">

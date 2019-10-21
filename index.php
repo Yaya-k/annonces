@@ -69,12 +69,28 @@ if(htmlspecialchars(isset($_POST['registerButton'])))
     $stmtinsert = $bdd->prepare($sql);
     $result = $stmtinsert->execute([$nom, $prenom, $email, $password, $birthday, $numero]);
     if($result){
-        echo 'Successfully saved.';
+        ?>
+        <div class="container">
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> votre inscription nous a ete envoyer.
+            </div>
+        </div>
+
+        <?php
+        $_SESSION["email"]=$_POST["email"];
     }else{
-        echo 'There were erros while saving the data.';
+        ?>
+        <div class="container">
+            <div class="alert alert-warning alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Warning!</strong> Nous avons rencontrer une eureur en interne les devolopeurs on etais notifier.
+            </div>
+        </div>
+        <?php
     }
 
-    $_SESSION["email"]=$_POST["email"];
+
 
 }
 
