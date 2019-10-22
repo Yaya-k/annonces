@@ -187,12 +187,13 @@ function checkIfWeAreAImage($inputName){
 
     if(!empty($_FILES[$inputName]["tmp_name"]))
     {
-        $check = getimagesize($_FILES[$inputName]["tmp_name"]);
-        if($check !== false) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
+       // $check = getimagesize($_FILES[$inputName]["tmp_name"]);
+       // if($check !== false) {
+        //    return true;
+       // } else {
+        //    return false;
+       // }
     }else{
         return false;
     }
@@ -245,13 +246,13 @@ if(isset($_POST["submitAnnonce"])){
         $result = $stmtinsert->execute([$id_user, $categorie, $localisation, $titre, $description, $prix]);
 
         $id_annonce=$bdd->lastInsertId();
-        ChromePhp::log($id_annonce);
         // je remplis la base d'image $imagesPath
 
         if($result){ // si j'arrive a ecrire sur le base je remplit la base d'image
 
             // je telecharge les images de l'utilisateur
             for($i=0;$i<sizeof($imageNames);$i++){
+                ChromePhp::log(sizeof($imageNames));
                 if(checkIfWeAreAImage($imageNames[$i])){
                     $path =upload($imageNames[$i]);
                     $sqlI = "INSERT   images (id_annonce	, path) VALUES(?,?)";
@@ -332,6 +333,23 @@ $_SESSION["error"]='';
 </br>
 </br>
 <?php include 'test.php'?>
+</br>
+
+</br>
+<div class="container" style="margin-left: 70px">
+    <div class="row">
+        <div class="col-sx-2 " >
+
+            <?php include 'testConsolePhp.php';?>
+
+        </div>
+
+    </div>
+
+    </br>
+
+
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </body>

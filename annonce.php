@@ -7,32 +7,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-
-
-
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
-
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-
     <!-- boostrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-
-
-
-
-
-
 </head>
-<body style="margin-left: 100px;margin-top: 70px;">
-
+<body style="margin-top: 70px;">
 </br>
 </br>
-
 <?php
     if(isset($_SESSION["email"])){
         ?>
@@ -43,115 +26,8 @@
                 <div class="form-group col-md-4">
                     <label for="inputPassword4">Categorie</label>
                     <select class="form-control search-slt" id="exampleFormControlSelect1" name="itemCcategorie" required>
-                        <option value="SelectUneCategorie" selected disabled>Select une categorie</option>
-                        <optgroup label="DAKAR">
 
-                            <option value="dakar">Dakar</option>
-                            <option value="pikine">Pikine</option>
-                            <option value="guediawaye">Guédiawaye</option>
-                            <option value="rufisque">Rufisque</option>
-                        </optgroup>
-
-                        <optgroup label="DIOURBEL">
-
-
-                            <option value="diourbel">Diourbel</option>
-                            <option value="bambey">Bambey</option>
-                            <option value="mbacke">Mbacké</option>
-                        </optgroup>
-
-
-                        <optgroup label="FATICK">
-
-                            <option value="fatick">Fatick</option>
-                            <option value="gossas">Gossas</option>
-                            <option value="foundiougne">Foundiougne</option>
-                        </optgroup>
-
-                        <optgroup label="KAFFRINE">
-
-
-                            <option value="kaffrine">Kaffrine</option>
-                            <option value="mbouki">Mbouki</option>
-                            <option value="koungheul">Koungheul</option>
-                            <option value="hoddar">Hoddar</option>
-                        </optgroup>
-
-                        <optgroup label="KAOLACK">
-
-
-                            <option value="kaolack">Kaolack</option>
-                            <option value="nioroDuRip">Nioro du Rip</option>
-                            <option value="mbadakhoune">Mbadakhoune</option>
-                            <option value="guinguineo">Guinguinéo</option>
-                        </optgroup>
-                        <optgroup label="KEDOUGOU">
-
-
-                            <option value="kedougou">Kédougou</option>
-                            <option value="salemata">Salémata</option>
-                            <option value="saraya">Saraya</option>
-                        </optgroup>
-                        <optgroup label="KOLDA">
-
-
-                            <option value="kolda">Kolda</option>
-                            <option value="medinaYoroFoulah">Médina Yoro Foulah</option>
-                            <option value="Velingara">Vélingara</option>
-                        </optgroup>
-                        <optgroup label="LOUGA">
-
-
-                            <option value="louga">Louga</option>
-                            <option value="kebemer">Kébémer</option>
-                            <option value="linguere">Linguère</option>
-                        </optgroup>
-
-                        <optgroup label="MATAM">
-
-
-                            <option value="matam">Matam</option>
-                            <option value="kanel">Kanel</option>
-                            <option value="ranerouFerlo">Ranérou-Ferlo</option>
-                        </optgroup>
-                        <optgroup label="SAINT-LOUIS">
-
-
-                            <option value="saintLouis">Saint Louis</option>
-                            <option value="podor">Podor</option>
-                        </optgroup>
-                        <optgroup label="SEDHIOU">
-
-
-                            <option value="sedhiou">Sédhiou</option>
-                            <option value="goudoump">Goudoump</option>
-                        </optgroup>
-                        <optgroup label="TAMBACOUNDA">
-
-
-                            <option value="tambacounda">Tambacounda</option>
-                            <option value="bakel">Bakel</option>
-                            <option value="goudiry">Goudiry</option>
-                        </optgroup>
-                        <optgroup label="THIES">
-
-
-                            <option value="thies">Thiés</option>
-                            <option value="tivaouane">Tivaouane</option>
-                            <option value="mbour">Mbour</option>
-                        </optgroup>
-                        <optgroup label="ZIGUINCHOR">
-
-
-                            <option value="ziguinchor">Ziguinchor</option>
-                            <option value="bignona">Bignona</option>
-                        </optgroup>
-                    </select>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="inputPassword4">Localisation</label>
-                    <select name="itemLocalisation" class="form-control search-slt" id="exampleFormControlSelect1">
-                        <option selected disabled>Select une Localisation</option>
+                        <option selected disabled>Select une categorie</option>
                         <optgroup label="Vehicule">
 
 
@@ -262,6 +138,116 @@
                             <option value="autres">Autres</option>
                         </optgroup>
 
+
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputPassword4">Localisation</label>
+                    <select name="itemLocalisation" class="form-control search-slt" id="exampleFormControlSelect1">
+                        <option selected disabled>Select une Localisation</option>
+
+                        <optgroup label="DAKAR">
+
+                            <option value="dakar">Dakar</option>
+                            <option value="pikine">Pikine</option>
+                            <option value="guediawaye">Guédiawaye</option>
+                            <option value="rufisque">Rufisque</option>
+                        </optgroup>
+
+                        <optgroup label="DIOURBEL">
+
+
+                            <option value="diourbel">Diourbel</option>
+                            <option value="bambey">Bambey</option>
+                            <option value="mbacke">Mbacké</option>
+                        </optgroup>
+
+
+                        <optgroup label="FATICK">
+
+                            <option value="fatick">Fatick</option>
+                            <option value="gossas">Gossas</option>
+                            <option value="foundiougne">Foundiougne</option>
+                        </optgroup>
+
+                        <optgroup label="KAFFRINE">
+
+
+                            <option value="kaffrine">Kaffrine</option>
+                            <option value="mbouki">Mbouki</option>
+                            <option value="koungheul">Koungheul</option>
+                            <option value="hoddar">Hoddar</option>
+                        </optgroup>
+
+                        <optgroup label="KAOLACK">
+
+
+                            <option value="kaolack">Kaolack</option>
+                            <option value="nioroDuRip">Nioro du Rip</option>
+                            <option value="mbadakhoune">Mbadakhoune</option>
+                            <option value="guinguineo">Guinguinéo</option>
+                        </optgroup>
+                        <optgroup label="KEDOUGOU">
+
+
+                            <option value="kedougou">Kédougou</option>
+                            <option value="salemata">Salémata</option>
+                            <option value="saraya">Saraya</option>
+                        </optgroup>
+                        <optgroup label="KOLDA">
+
+
+                            <option value="kolda">Kolda</option>
+                            <option value="medinaYoroFoulah">Médina Yoro Foulah</option>
+                            <option value="Velingara">Vélingara</option>
+                        </optgroup>
+                        <optgroup label="LOUGA">
+
+
+                            <option value="louga">Louga</option>
+                            <option value="kebemer">Kébémer</option>
+                            <option value="linguere">Linguère</option>
+                        </optgroup>
+
+                        <optgroup label="MATAM">
+
+
+                            <option value="matam">Matam</option>
+                            <option value="kanel">Kanel</option>
+                            <option value="ranerouFerlo">Ranérou-Ferlo</option>
+                        </optgroup>
+                        <optgroup label="SAINT-LOUIS">
+
+
+                            <option value="saintLouis">Saint Louis</option>
+                            <option value="podor">Podor</option>
+                        </optgroup>
+                        <optgroup label="SEDHIOU">
+
+
+                            <option value="sedhiou">Sédhiou</option>
+                            <option value="goudoump">Goudoump</option>
+                        </optgroup>
+                        <optgroup label="TAMBACOUNDA">
+
+
+                            <option value="tambacounda">Tambacounda</option>
+                            <option value="bakel">Bakel</option>
+                            <option value="goudiry">Goudiry</option>
+                        </optgroup>
+                        <optgroup label="THIES">
+
+
+                            <option value="thies">Thiés</option>
+                            <option value="tivaouane">Tivaouane</option>
+                            <option value="mbour">Mbour</option>
+                        </optgroup>
+                        <optgroup label="ZIGUINCHOR">
+
+
+                            <option value="ziguinchor">Ziguinchor</option>
+                            <option value="bignona">Bignona</option>
+                        </optgroup>
                     </select>
                 </div>
             </div>
@@ -288,7 +274,7 @@
             </br>
             </br>
 
-            <div class="container">
+            <div class="container" style="margin-left: 70px">
                 <div class="row">
                     <div class="col-md-2 col-xs-1" >
                         <img id="photoPrincipale" src="src/images/photoPrincipale.PNG",alt="photo principal" style="cursor:pointer">
@@ -323,7 +309,7 @@
                     <div class="col-md-2 col-xs-1" >
                         <img  id="photo5" src="src/images/photo.PNG",alt="photo" style="cursor:pointer">
                         <input name="file5ToUpload" type="file" id="file5ToUpload" accept=".gif,.jpg,.jpeg,.png" style="display:none" onchange="uploadImage5(this)"/>
-                        <span id="supprimerPhoto5" style="cursor: pointer;display: none">Supprimer</span>
+                        <span id="supprimerPhoto5" style="cursor: pointer;display: none;color: red">Supprimer</span>
 
 
 
@@ -372,20 +358,13 @@
         <script>
 
             $('#exampleModalCenter').modal('show');
-
-
-
-
         </script>
         <?php
         include 'index.php';
     }
-
 ?>
-
 <script>
     var names=["0","1","2","3","4"];
-
 
     $("#photoPrincipale").click(function () {
         $("#fileToUpload").trigger('click');
