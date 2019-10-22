@@ -130,6 +130,11 @@
                 $req->execute(array(
                     'id' => $id));
             }elseif ($_GET['action']=="supprimer"){
+
+                $sql = "INSERT   annonces_supprimer (id_user, categorie, localisation, titre, description, prix) VALUES(?,?,?,?,?,?)";
+                $stmtinsert = $bdd->prepare($sql);
+                $result = $stmtinsert->execute([$id_user, $categorie, $localisation, $titre, $description, $prix]);
+
                 $req = $bdd->prepare('DELETE FROM annonces_en_cours WHERE id = :id');
                 $req->execute(array(
                     'id' => $id));
