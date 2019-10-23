@@ -42,15 +42,17 @@
                             <td> <?php echo $arr_rows[$l]['description']; ?></td>
                             <td><?php echo $arr_rows[$l]['localisation']; ?></td>
                             <td>
-                                    <button  type="submit" name="edit_btn"
-                                             onclick="location.href='index.php?prix=<?php echo $arr_rows[$l]['prix'];?>&amp;titre=<?php echo $arr_rows[$l]['titre'];?>&amp;description=<?php echo $arr_rows[$l]['description'];?>&amp;localisation=<?php echo $arr_rows[$l]['localisation'];?>&amp;categorie=<?php echo $arr_rows[$l]['categorie'];?>&amp;id_user=<?php echo $arr_rows[$l]['id_user'];?>&amp;id=<?php echo $arr_rows[$l]['id'];?>&amp;action=valider'" class="btn btn-success">
-                                        VALIDER
-                                </button>
+                                <form action="index.php" method="post">
+                                    <input type="hidden" name="edit_id" value=<?php echo $arr_rows[$l]['id']?>>
+                                    <button  type="submit" name="edit_btn" class="btn btn-success"> VALIDER</button>
+                                </form>
+
                             </td>
                             <td>
-                                    <button type="submit" name="delete_btn" class="btn btn-danger"
-                                            onclick="location.href='index.php?prix=<?php echo $arr_rows[$l]['prix'];?>&amp;titre=<?php echo $arr_rows[$l]['titre'];?>&amp;description=<?php echo $arr_rows[$l]['description'];?>&amp;localisation=<?php echo $arr_rows[$l]['localisation'];?>&amp;categorie=<?php echo $arr_rows[$l]['categorie'];?>&amp;id_user=<?php echo $arr_rows[$l]['id_user'];?>&amp;id=<?php echo $arr_rows[$l]['id'];?>&amp;action=supprimer'">
-                                        DELETE</button>
+                                <form action="index.php" method="post">
+                                    <input type="hidden" name="delete_id" value=<?php echo $arr_rows[$l]['id']?>>
+                                    <button type="submit" name="delete_btn" class="btn btn-danger"> DELETE</button>
+                                </form>
                             </td>
                         </tr>
 

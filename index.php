@@ -39,7 +39,7 @@ if(htmlspecialchars(isset($_COOKIE["email"]))){
 
 ?>
 
-<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<!--<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -168,9 +168,12 @@ $everythingIsOk = true;
 function upload($inputName){
     try{
 
-        // the place of the images
+        // the place of the images  $_FILES[$inputName]["name"]
         $target_dir = "uploads/";
-        $target_file = $target_dir . microtime().basename($_FILES[$inputName]["name"]);
+        $ext = pathinfo($_FILES[$inputName]["name"], PATHINFO_EXTENSION);
+
+        $target_file = $target_dir . microtime().'.'.$ext;
+
         move_uploaded_file($_FILES[$inputName]["tmp_name"], $target_file);
         return $target_file;
 

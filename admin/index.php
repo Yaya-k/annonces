@@ -3,18 +3,18 @@
 }?>
 
 <?php
-    if(isset($_SESSION["email"]))
+if(isset($_SESSION["email"]))
     if($_SESSION["email"]== "yaya.kamissokho@gmail.com"){
         ?>
-    <?php
-    include('includes/header.php');
-    include('includes/navbar.php');
-    include ('bddConnextion.php');
-    ?>
+        <?php
+        include('includes/header.php');
+        include('includes/navbar.php');
+        include ('bddConnextion.php');
+        ?>
 
 
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -112,37 +112,53 @@
 
         <!-- regarder s-->
         <?php
-        if(isset($_GET['action'])){
-            $id_user=$_GET['id_user'];
-            $categorie = $_GET['categorie'];
-            $localisation = $_GET['localisation'];
-            $titre =$_GET['titre'];
-            $description = $_GET['description'];
-            $prix = $_GET['prix'];
-            $id=$_GET['id'];
-            if($_GET['action']=="valider"){
 
-                $sql = "INSERT   annonces (id, id_user, categorie, localisation, titre, description, prix) VALUES(?,?,?,?,?,?,?)";
-                $stmtinsert = $bdd->prepare($sql);
+        if(isset($_POST['edit_btn']))
+        {
+            $id=$_POST['edit_id'];
+            $req = $bdd->prepare(' SELECT prix,titre,description,localisation,categorie,id,id_user FROM annonces_en_cours WHERE id = :id');
+            $req->execute(array(
+                'id' => $id));
 
-                $result = $stmtinsert->execute([$id,$id_user, $categorie, $localisation, $titre, $description, $prix]);
-                $req = $bdd->prepare('DELETE FROM annonces_en_cours WHERE id = :id');
-                $req->execute(array(
-                    'id' => $id));
-            }elseif ($_GET['action']=="supprimer"){
+            $resultat = $req->fetch();
+            $id_user=$resultat['id_user'];
+            $categorie = $resultat['categorie'];
+            $localisation = $resultat['localisation'];
+            $titre =$resultat['titre'];
+            $description = $resultat['description'];
+            $prix = $resultat['prix'];
+            $id=$resultat['id'];
 
-                $sql = "INSERT   annonces_supprimer (id_user, categorie, localisation, titre, description, prix) VALUES(?,?,?,?,?,?)";
-                $stmtinsert = $bdd->prepare($sql);
-                $result = $stmtinsert->execute([$id_user, $categorie, $localisation, $titre, $description, $prix]);
+            $sql = "INSERT   annonces (id, id_user, categorie, localisation, titre, description, prix) VALUES(?,?,?,?,?,?,?)";
+            $stmtinsert = $bdd->prepare($sql);
+            $result = $stmtinsert->execute([$id,$id_user, $categorie, $localisation, $titre, $description, $prix]);
 
-                $req = $bdd->prepare('DELETE FROM annonces_en_cours WHERE id = :id');
-                $req->execute(array(
-                    'id' => $id));
-            }
+            $req = $bdd->prepare('DELETE FROM annonces_en_cours WHERE id = :id');
+            $req->execute(array(
+                'id' => $id));
 
+        }
+        if(isset($_POST['delete_btn'])){
+            $id=$_POST['edit_id'];
+            $req = $bdd->prepare(' SELECT prix,titre,description,localisation,categorie,id,id_user FROM annonces_en_cours WHERE id = :id');
+            $req->execute(array(
+                'id' => $id));
 
+            $resultat = $req->fetch();
+            $id_user=$resultat['id_user'];
+            $categorie = $resultat['categorie'];
+            $localisation = $resultat['localisation'];
+            $titre =$resultat['titre'];
+            $description = $resultat['description'];
+            $prix = $resultat['prix'];
+            $id=$resultat['id'];
 
-
+            $sql = "INSERT   annonces_supprimer (id, id_user, categorie, localisation, titre, description, prix) VALUES(?,?,?,?,?,?,?)";
+            $stmtinsert = $bdd->prepare($sql);
+            $result = $stmtinsert->execute([$id,$id_user, $categorie, $localisation, $titre, $description, $prix]);
+            $req = $bdd->prepare('DELETE FROM annonces_en_cours WHERE id = :id');
+            $req->execute(array(
+                'id' => $id));
         }
         ?>
 
@@ -152,9 +168,6 @@
         include('includes/scripts.php');
         include 'annonce_en_cours.php';
         include('includes/footer.php');
-
-        }else{
-
-            }
+    }else{
+    }
 ?>
-
