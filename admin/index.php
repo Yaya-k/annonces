@@ -139,7 +139,7 @@ if(isset($_SESSION["email"]))
 
         }
         if(isset($_POST['delete_btn'])){
-            $id=$_POST['edit_id'];
+            $id=$_POST['delete_id'];
             $req = $bdd->prepare(' SELECT prix,titre,description,localisation,categorie,id,id_user FROM annonces_en_cours WHERE id = :id');
             $req->execute(array(
                 'id' => $id));
